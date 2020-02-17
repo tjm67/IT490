@@ -2,6 +2,9 @@ version: '3'
 services:
   messaging:
     image: 'rabbitmq:3-management'
+    ports:
+      - 5672:5672
+      - 15672:15672
   postgres:
     image: 'postgres'
     environment:
