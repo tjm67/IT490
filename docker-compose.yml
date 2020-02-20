@@ -11,6 +11,9 @@ services:
     image: 'postgres'
     environment:
       POSTGRES_PASSWORD: changeme
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: changeme
+      POSTGRES_DB: mydb
       
   adminer:
     image: adminer
