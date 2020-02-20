@@ -1,14 +1,22 @@
 version: '3'
 services:
+
   messaging:
     image: 'rabbitmq:3-management'
     ports:
       - 5672:5672
       - 15672:15672
+      
   postgres:
     image: 'postgres'
     environment:
       POSTGRES_PASSWORD: changeme
+      
+  adminer:
+    image: adminer
+    ports:
+      - 8080:8080
+      
   front_end:
     build: ./frontend
     ports:
