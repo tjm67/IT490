@@ -11,13 +11,12 @@ services:
     image: 'postgres'
     restart: always
     environment:
-      POSTGRES_PASSWORD: changeme
       POSTGRES_USER: root
-      POSTGRES_PASSWORD: changeme
+      POSTGRES_PASSWORD: root
       POSTGRES_DB: mydb
       
   adminer:
-    image: adminer
+    image: 'adminer'
     restart: always
     ports:
       - 8080:8080
