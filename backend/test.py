@@ -10,7 +10,6 @@ import requests
 import sys
 import mysql.connector as mysql
 import psycopg2
-print(f"IM ON FIRE SOMEONE PLEASE HELP ME!IM ON FIRE SOMEONE PLEASE HELP ME!IM ON FIRE SOMEONE PLEASE HELP ME!IM ON FIRE SOMEONE PLEASE HELP ME!IM ON FIRE SOMEONE PLEASE HELP ME!IM ON FIRE SOMEONE PLEASE HELP ME!IM ON FIRE SOMEONE PLEASE HELP ME!IM ON FIRE SOMEONE PLEASE HELP ME!IM ON FIRE SOMEONE PLEASE HELP ME!")
 # Source: https:///stackoverflow.com/questions/26174743/making-a-fast-port-scanner
 def tcp_connect(ip, port_number):
     TCPsock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -111,7 +110,7 @@ for ip in active_hosts:
         print("> Checking connection, queue creation, producing, and consuming...")
         connection = pika.BlockingConnection(pika.ConnectionParameters(ip))
         channel = connection.channel()
-        channel.queue_declare(queue='Milestone2')
+        channel.queue_declare(queue='test')
         channel.basic_publish(exchange='', routing_key='test', body='Test Message')
         connection.close()
         time.sleep(5)
