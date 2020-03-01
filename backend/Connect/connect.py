@@ -1,4 +1,5 @@
-import psycopg2
+import psycopg2, time
+time.sleep(5)
 conn = None
 try:
 	conn = psycopg2.connect(host="it490_postgres_1",database="mydb",user="root",password="root")
