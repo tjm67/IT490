@@ -6,7 +6,7 @@ services:
     ports:
       - 5672:5672
       - 15672:15672
-      
+
   postgres:
     image: 'postgres'
     restart: always
@@ -18,23 +18,22 @@ services:
       POSTGRES_DB: mydb
     ports:
       - 5432:5432
-      
+
   adminer:
     image: 'adminer'
     restart: always
     ports:
       - 8080:8080
-      
-  front_end:
+
+  frontend:
     build: ./frontend
     ports:
         - 5000:5000
-     
-  back_end:
+
+  backend:
     build: ./backend/ReceiveTest
-    
-  back_end:
     build: ./backend/SendTest
- 
+    build: ./backend/Connect
+
 volumes:
     pgdata:
