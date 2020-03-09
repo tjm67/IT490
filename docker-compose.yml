@@ -37,6 +37,8 @@ services:
   backend:
     build: ./backend
     build: ./backend/Connect
+    #if this runs it stops backend
+    build: ./backend/Send
 
 volumes:
     pgdata:
