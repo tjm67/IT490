@@ -30,7 +30,7 @@ def register_post():
 	channel.basic_publish(exchange='', routing_key='hello', body=msg)
 
 	connection.close()
-	return render_template("index.html")
+	return render_template("login.html")
 	
 if  __name__=='__main__':
 	app.run(debug=True)
