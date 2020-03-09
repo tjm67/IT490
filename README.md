@@ -1,2 +1,2 @@
 # IT490
-Members: Trent Meyers, Steven Chirico, Karl Giannoglou, John Berkowitz
+Members: Trent Meyers, Steven Chirico, John Berkowitz, Karl Giannoglou
