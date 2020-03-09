@@ -4,7 +4,7 @@ import time
 import psycopg2
 
 time.sleep(10)
-connection = pika.BlockingConnection(pika.ConnectionParameters(host='it490_messaging_1'))
+connection = pika.BlockingConnection(pika.ConnectionParameters(host='messaging'))
 channel = connection.channel()
 
 channel.queue_declare(queue='hello')
