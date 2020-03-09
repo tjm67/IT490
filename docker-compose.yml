@@ -36,6 +36,7 @@ services:
 
   backend:
     build: ./backend
+    build: ./backend/Connect
 
 volumes:
     pgdata:
