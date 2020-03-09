@@ -31,9 +31,7 @@ services:
         - 5000:5000
 
   backend:
-    build: ./backend/ReceiveTest
-    build: ./backend/SendTest
-    build: ./backend/Connect
+    build: ./backend
 
 volumes:
     pgdata:
