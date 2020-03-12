@@ -1,0 +1,44 @@
+version: '3'
+services:
+
+  messaging:
+    image: 'rabbitmq:3-management'
+    ports:
+      - 5672:5672
+      - 15672:15672
+
+  postgres:
+    image: 'postgres'
+    restart: always
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: mydb
+    ports:
+      - 5432:5432
+
+  dbinit:
+    build: ./db
+    depends_on: 
+        - postgres
+  adminer:
+    image: 'adminer'
+    restart: always
+    ports:
+      - 8080:8080
+
+  frontend:
+    build: ./frontend
+    ports:
+        - 5000:5000
+
+  backend:
+    build: ./backend
+    build: ./backend/Connect
+    #if this runs it stops backend
+    #build: ./backend/Send
+
+volumes:
+    pgdata:
