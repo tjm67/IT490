@@ -28,7 +28,7 @@ def login_post():
     connection.close()
 
     # if result success:
-        return render_template('profile.html')
+    return render_template('profile.html')
     # else
     #    return render_template('login.html')
 	
