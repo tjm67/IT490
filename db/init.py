@@ -5,7 +5,7 @@ conn = None
 try:
 	conn = psycopg2.connect(host="postgres",database="mydb",user="root",password="root")
 	cur = conn.cursor()
-	cur.execute("CREATE TABLE IF NOT EXISTS users (email varchar(50) NOT NULL, password varchar(30) NOT NULL);")
+	cur.execute("CREATE TABLE IF NOT EXISTS users (email varchar(50) NOT NULL, password varchar(150) NOT NULL);")
 	conn.commit()
 	cur.close()
 
