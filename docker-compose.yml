@@ -2,10 +2,39 @@ version: '3'
 services:
 
   messaging:
-    image: 'rabbitmq:3-management'
+    image: harbur/rabbitmq-cluster
+    hostname: messaging
+    environment:
+      - ERLANG_COOKIE=abcdefg
     ports:
-      - 5672:5672
-      - 15672:15672
+      - "5672:5672"
+      - "15672:15672"
+
+  messaging2:
+    image: harbur/rabbitmq-cluster
+    hostname: messaging2
+    links:
+      - messaging
+    environment:
+      - ERLANG_COOKIE=abcdefg
+      - CLUSTER_WITH=messaging
+      - ENABLE_RAM=true
+      - RAM_NODE=true
+    ports:
+      - "5673:5672"
+      - "15673:15672"
+
+  messaging3:
+    image: harbur/rabbitmq-cluster
+    hostname: messaging3
+    links:
+      - messaging
+      - messaging2
+    environment:
+      - ERLANG_COOKIE=abcdefg
+      - CLUSTER_WITH=messaging
+    ports:
+      - "5674:5672"
 
   postgres:
     image: 'postgres'
@@ -21,8 +50,9 @@ services:
 
   dbinit:
     build: ./db
-    depends_on: 
+    depends_on:
         - postgres
+
   adminer:
     image: 'adminer'
     restart: always
