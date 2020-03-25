@@ -1,17 +1,16 @@
 from flask import Flask, render_template, request
-from flask_httpauth import HTTPBasicAuth
 import cgi, cgitb, time
 import pika
-import json
 app = Flask(__name__)
 
 @app.route('/')
 def Home():
     return render_template('index.html')
 
-@app.route('/login/', methods=['GET'])
-def login():
+@app.route('/login/' )
+def Login():
     return render_template('login.html')
+<<<<<<< HEAD
 
 @app.route('/login/', methods=['POST'])
 def login_post():
@@ -31,6 +30,8 @@ def login_post():
     return render_template('profile.html')
     # else
     #    return render_template('login.html')
+=======
+>>>>>>> parent of e81dee5... Add files via upload
 	
 @app.route('/register/')
 def register():
@@ -38,21 +39,20 @@ def register():
 
 @app.route('/register/', methods = ['POST'])	
 def register_post():
-    email = request.values.get('email')
-    password = request.values.get('psw')
-        
-    time.sleep(2)
+	email = request.values.get('email')
+	password = request.values.get('psw')
+	
+	time.sleep(2)
 
-    connection = pika.BlockingConnection(pika.ConnectionParameters(host='messaging'))
-    channel = connection.channel()
-    channel.queue_declare(queue='register')
-    form = cgi.FieldStorage()
-    msgJson = { "email": email, "password": password }
-    channel.basic_publish(exchange='', routing_key='register', body=json.dumps(msgJson))
+	connection = pika.BlockingConnection(pika.ConnectionParameters(host='messaging'))
+	channel = connection.channel()
+	channel.queue_declare(queue='hello')
+	form = cgi.FieldStorage()
+	msg= email + " " + password
+	channel.basic_publish(exchange='', routing_key='hello', body=msg)
 
-    connection.close()
-    return render_template("index.html")
-    
- 
+	connection.close()
+	return render_template("index.html")
+	
 if  __name__=='__main__':
 	app.run(debug=True)
