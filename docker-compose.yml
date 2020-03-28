@@ -37,7 +37,7 @@ services:
       - "5674:5672"
 
   postgres:
-    container_name: postgres1
+    container_name: postgres
     image: 'postgres'
     restart: always
     volumes:
