@@ -37,6 +37,7 @@ services:
       - "5674:5672"
 
   postgres:
+    container_name: postgres1
     image: 'postgres'
     restart: always
     volumes:
@@ -45,8 +46,29 @@ services:
       POSTGRES_USER: root
       POSTGRES_PASSWORD: root
       POSTGRES_DB: mydb
+      NODE_NAME: postgres
+      POSTGRESQL_REPLICATION_MODE: master
+      POSTGRESQL_REPLICATION_USER: repl_user
+      POSTGRESQL_REPLICATION_PASSWORD: repl_password
     ports:
       - 5432:5432
+        
+  postgres_replica:
+    image: 'postgres'
+    restart: always
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: mydb
+      NODE_NAME: postgres_replica
+      POSTGRESQL_REPLICATION_MODE: slave
+      POSTGRESQL_REPLICATION_USER: repl_user
+      POSTGRESQL_REPLICATION_PASSWORD: repl_password
+      POSTGRESQL_MASTER_HOST: postgres
+    ports:
+      - 5433:5432
 
   dbinit:
     build: ./db
