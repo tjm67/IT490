@@ -66,9 +66,9 @@ spec:
           image: postgres
           env:
             - name: POSTGRES_PASSWORD
-              value: "changeme"
+              value: "IT490123!"
             - name: POSTGRES_REPLICA_PASSWORD
-              value: "changeme"
+              value: "rep_password"
           command:
             - bash
             - "-c"
@@ -127,7 +127,7 @@ spec:
           image: postgres
           env:
             - name: POSTGRES_REPLICA_PASSWORD
-              value: "changeme"
+              value: "rep_password"
           command:
             - bash
             - "-c"
